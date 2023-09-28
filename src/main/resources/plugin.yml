@@ -1,0 +1,4 @@
+name: Kits
+version: '${project.version}'
+main: me.cole.kitsplugin.Kits
+api-version: '1.20'
