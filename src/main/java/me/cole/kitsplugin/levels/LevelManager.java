@@ -37,6 +37,12 @@ public class LevelManager {
             stats.setExp(remainder);
             player.sendMessage(ChatColor.AQUA + "You have leveled up!\n" + ChatColor.GREEN + "You are now Level " + stats.getLevel() + "!\n" +
                     ChatColor.GREEN + "(" + stats.getExp() + "/" + getTargetLevelExp(stats) + ")");
+            try {
+                database.updateUserStatistics(stats);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
         }
 
         //player.sendMessage("Level: " + stats.getLevel() + "\nXP/Target" + exp + "/" + getTargetLevelExp(stats)
