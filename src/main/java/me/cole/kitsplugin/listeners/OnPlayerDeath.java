@@ -1,4 +1,4 @@
-package me.cole.kitsplugin.kd.listeners;
+package me.cole.kitsplugin.listeners;
 
 import me.cole.kitsplugin.database.Database;
 import me.cole.kitsplugin.database.DatabaseStructure;

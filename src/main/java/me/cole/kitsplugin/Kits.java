@@ -6,6 +6,7 @@ import me.cole.kitsplugin.levels.LevelManager;
 import me.cole.kitsplugin.levels.SetExpCommand;
 import me.cole.kitsplugin.levels.SetLevelCommand;
 import me.cole.kitsplugin.listeners.OnPlayerChat;
+import me.cole.kitsplugin.listeners.OnPlayerDeath;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.sql.SQLException;
@@ -38,6 +39,7 @@ public final class Kits extends JavaPlugin {
 
         // Register listeners
         getServer().getPluginManager().registerEvents(new OnPlayerChat(plugin), this);
+        getServer().getPluginManager().registerEvents(new OnPlayerDeath(database), this);
 
         // Setup config
         getConfig().options().copyDefaults();
