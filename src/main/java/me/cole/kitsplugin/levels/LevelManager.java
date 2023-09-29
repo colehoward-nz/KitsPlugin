@@ -22,31 +22,47 @@ public class LevelManager {
         int targetLevel = stats.getLevel()+1;
         return (int)Math.ceil(Math.pow((targetLevel/0.07), 2));
     }
-    public void checkLevel(Player player) {
-        DatabaseStructure stats = null;
+
+    public int setExp(Player player, int exp) {
+        DatabaseStructure stats;
         try {
             stats = database.getUserStatistics(player);
+            stats.setExp(exp);
+            stats.setLevel((int)Math.ceil(0.07 * Math.sqrt(exp)));
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
+        return stats.getExp();
+    }
+    public int setLevel(Player player, int level) {
+        DatabaseStructure stats;
+        try {
+            stats = database.getUserStatistics(player);
+            stats.setLevel(level);
+            database.updateUserStatistics(stats);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return stats.getLevel();
+    }
 
-        double exp = stats.getExp();
-        if (exp >= getTargetLevelExp(stats)) {
-            int remainder = (int)Math.ceil(exp % getTargetLevelExp(stats));
-            stats.setLevel(stats.getLevel()+1);
-            stats.setExp(remainder);
-            player.sendMessage(ChatColor.AQUA + "You have leveled up!\n" + ChatColor.GREEN + "You are now Level " + stats.getLevel() + "!\n" +
-                    ChatColor.GREEN + "(" + stats.getExp() + "/" + getTargetLevelExp(stats) + ")");
-            try {
+    public int checkLevel(Player player) {
+        DatabaseStructure stats;
+        try {
+            stats = database.getUserStatistics(player);
+            double exp = stats.getExp();
+            if (exp >= getTargetLevelExp(stats)) {
+                int remainder = (int) Math.ceil(exp % getTargetLevelExp(stats));
+                stats.setLevel(stats.getLevel() + 1);
+                stats.setExp(remainder);
+                player.sendMessage(ChatColor.AQUA + "You have leveled up!\n" + ChatColor.GREEN + "You are now Level " + stats.getLevel() + "!\n" +
+                        ChatColor.GREEN + "(" + stats.getExp() + "/" + getTargetLevelExp(stats) + ")");
                 database.updateUserStatistics(stats);
-            } catch (SQLException e) {
-                e.printStackTrace();
             }
-
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
-
-        //player.sendMessage("Level: " + stats.getLevel() + "\nXP/Target" + exp + "/" + getTargetLevelExp(stats)
-        //        + "\nRemainder:" + String.valueOf(exp % getTargetLevelExp(stats)));
+        return stats.getLevel();
     }
 
 
