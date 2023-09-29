@@ -4,4 +4,6 @@ me\cole\kitsplugin\listeners\OnPlayerChat.class
 me\cole\kitsplugin\database\DatabaseStructure.class
 me\cole\kitsplugin\levels\LevelCommand.class
 me\cole\kitsplugin\levels\LevelManager.class
+me\cole\kitsplugin\levels\SetLevelCommand.class
+me\cole\kitsplugin\kd\listeners\OnPlayerDeath.class
 me\cole\kitsplugin\levels\SetExpCommand.class

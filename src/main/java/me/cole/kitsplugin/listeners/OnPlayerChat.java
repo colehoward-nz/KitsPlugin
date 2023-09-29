@@ -14,7 +14,7 @@ public class OnPlayerChat implements Listener {
     }
 
     @EventHandler
-    public void onPlayerChat(AsyncPlayerChatEvent e) {
+    public void OnPlayerChat(AsyncPlayerChatEvent e) {
         String playerLevel = ChatColor.WHITE + "[" + plugin.lm.getColouredLevel(e.getPlayer()) + ChatColor.WHITE + "] ";
         e.setFormat(playerLevel + e.getFormat());
     }

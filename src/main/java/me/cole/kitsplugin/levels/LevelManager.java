@@ -21,12 +21,9 @@ public class LevelManager {
     public int setExp(Player player, int exp) {
         DatabaseStructure stats;
         try {
-            player.sendMessage("poop");
             stats = database.getUserStatistics(player);
             stats.setExp(exp);
             database.updateUserStatistics(stats);
-            //stats.setLevel((int)Math.ceil(0.03 * Math.sqrt(exp)));
-            //database.updateUserStatistics(stats);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -47,6 +44,7 @@ public class LevelManager {
         try {
             stats = database.getUserStatistics(player);
             stats.setLevel(level);
+            stats.setExp(0);
             database.updateUserStatistics(stats);
         } catch (SQLException e) {
             throw new RuntimeException(e);
