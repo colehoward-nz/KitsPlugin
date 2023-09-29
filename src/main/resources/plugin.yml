@@ -7,3 +7,5 @@ commands:
     description: Testing
   setxp:
     description: Testing
+  checklevel:
+    description: Testing

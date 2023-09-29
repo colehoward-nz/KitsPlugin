@@ -1,9 +1,9 @@
 package me.cole.kitsplugin;
 
 import me.cole.kitsplugin.database.Database;
-import me.cole.kitsplugin.levels.AddExpCommand;
 import me.cole.kitsplugin.levels.LevelCommand;
 import me.cole.kitsplugin.levels.LevelManager;
+import me.cole.kitsplugin.levels.SetExpCommand;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.sql.SQLException;
@@ -27,11 +27,15 @@ public final class Kits extends JavaPlugin {
         }
 
         plugin = this;
-        lm = new LevelManager(plugin, database);
+        lm = new LevelManager(database);
 
         // Register commands
         Objects.requireNonNull(getCommand("level")).setExecutor(new LevelCommand(this));
-        Objects.requireNonNull(getCommand("setxp")).setExecutor(new AddExpCommand(this, database));
+        Objects.requireNonNull(getCommand("setxp")).setExecutor(new SetExpCommand(this, database));
+
+        // Setup config
+        getConfig().options().copyDefaults();
+        saveDefaultConfig();
     }
 
     public Database getDatabase() {

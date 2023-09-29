@@ -3,4 +3,4 @@ me\cole\kitsplugin\database\Database.class
 me\cole\kitsplugin\database\DatabaseStructure.class
 me\cole\kitsplugin\levels\LevelCommand.class
 me\cole\kitsplugin\levels\LevelManager.class
-me\cole\kitsplugin\levels\AddExpCommand.class
+me\cole\kitsplugin\levels\SetExpCommand.class
