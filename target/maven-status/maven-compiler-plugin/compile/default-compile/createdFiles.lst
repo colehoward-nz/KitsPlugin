@@ -1,5 +1,6 @@
 me\cole\kitsplugin\Kits.class
 me\cole\kitsplugin\database\Database.class
+me\cole\kitsplugin\listeners\OnPlayerChat.class
 me\cole\kitsplugin\database\DatabaseStructure.class
 me\cole\kitsplugin\levels\LevelCommand.class
 me\cole\kitsplugin\levels\LevelManager.class

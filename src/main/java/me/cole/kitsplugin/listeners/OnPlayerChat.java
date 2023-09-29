@@ -1,0 +1,21 @@
+package me.cole.kitsplugin.listeners;
+
+import me.cole.kitsplugin.Kits;
+import org.bukkit.ChatColor;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.player.AsyncPlayerChatEvent;
+
+public class OnPlayerChat implements Listener {
+    private final Kits plugin;
+
+    public OnPlayerChat(Kits plugin) {
+        this.plugin = plugin;
+    }
+
+    @EventHandler
+    public void onPlayerChat(AsyncPlayerChatEvent e) {
+        String playerLevel = ChatColor.WHITE + "[" + plugin.lm.getColouredLevel(e.getPlayer()) + ChatColor.WHITE + "] ";
+        e.setFormat(playerLevel + e.getFormat());
+    }
+}

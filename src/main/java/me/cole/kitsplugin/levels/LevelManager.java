@@ -1,6 +1,5 @@
 package me.cole.kitsplugin.levels;
 
-import me.cole.kitsplugin.Kits;
 import me.cole.kitsplugin.database.Database;
 import me.cole.kitsplugin.database.DatabaseStructure;
 import org.bukkit.ChatColor;
@@ -16,21 +15,18 @@ public class LevelManager {
     }
 
     public int getTargetLevelExp(Player player, int level) {
-        DatabaseStructure stats;
-        try {
-            stats = database.getUserStatistics(player);
-            return (int)Math.ceil(Math.pow((level/0.7), 2));
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        return (int)Math.ceil(Math.pow((level/0.7), 2));
     }
 
     public int setExp(Player player, int exp) {
         DatabaseStructure stats;
         try {
+            player.sendMessage("poop");
             stats = database.getUserStatistics(player);
             stats.setExp(exp);
-            stats.setLevel((int)Math.ceil(0.03 * Math.sqrt(exp)));
+            database.updateUserStatistics(stats);
+            //stats.setLevel((int)Math.ceil(0.03 * Math.sqrt(exp)));
+            //database.updateUserStatistics(stats);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -87,5 +83,28 @@ public class LevelManager {
         return stats.getLevel();
     }
 
-
+    public String getColouredLevel(Player player) {
+        String colouredLevel = "";
+        int level = checkLevel(player);
+        if (0 <= level && level < 4) {
+            colouredLevel = "" + ChatColor.DARK_GRAY + checkLevel(player);
+        } else if (5 <= level && level < 9) {
+            colouredLevel = "" + ChatColor.GRAY + checkLevel(player);
+        } else if (10 <= level && level < 14) {
+            colouredLevel = "" + ChatColor.DARK_GREEN + checkLevel(player);
+        } else if (15 <= level && level < 19) {
+            colouredLevel = "" + ChatColor.GREEN + checkLevel(player);
+        } else if (20 <= level && level < 24) {
+            colouredLevel = "" + ChatColor.YELLOW + checkLevel(player);
+        } else if (25 <= level && level < 29) {
+            colouredLevel = "" + ChatColor.GOLD + checkLevel(player);
+        } else if (30 <= level && level < 34) {
+            colouredLevel = "" + ChatColor.RED + checkLevel(player);
+        } else if (35 <= level && level < 39) {
+            colouredLevel = "" + ChatColor.RED + ChatColor.BOLD + checkLevel(player);
+        } else {
+            colouredLevel = "" + ChatColor.DARK_PURPLE + ChatColor.BOLD + checkLevel(player);
+        }
+        return colouredLevel;
+    }
 }

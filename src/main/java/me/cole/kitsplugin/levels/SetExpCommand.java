@@ -32,14 +32,8 @@ public class SetExpCommand implements CommandExecutor {
             }
             else {
                 if (Bukkit.getServer().getPlayerExact(args[0]) != null) {
-                    DatabaseStructure stats = null;
-                    try {
-                        stats = database.getUserStatistics(player);
-                        plugin.lm.setExp(player, Integer.parseInt(args[1]));
-                        database.updateUserStatistics(stats);
-                    } catch (SQLException e) {
-                        throw new RuntimeException(e);
-                    }
+                    int exp = Integer.parseInt(args[1]);
+                    plugin.lm.setExp(player, exp);
                 }
                 else {
                     player.sendMessage(ChatColor.translateAlternateColorCodes('&', playerNotFound + args[0]));

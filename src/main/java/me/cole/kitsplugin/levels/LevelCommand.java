@@ -1,6 +1,7 @@
 package me.cole.kitsplugin.levels;
 
 import me.cole.kitsplugin.Kits;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -22,6 +23,16 @@ public class LevelCommand implements CommandExecutor {
             if (args.length == 0 || args[0].equalsIgnoreCase(player.getDisplayName())) {
                 player.sendMessage(ChatColor.YELLOW + "You are currently LEVEL " + plugin.lm.checkLevel(player) + " (" + plugin.lm.getExp(player) + "/" +
                         plugin.lm.getTargetLevelExp(player, plugin.lm.getLevel(player)) + ")");
+            }
+            else {
+                Player argumentPlayer = Bukkit.getServer().getPlayerExact(args[0]);
+                if (argumentPlayer != null) {
+                    player.sendMessage(ChatColor.YELLOW + argumentPlayer.getDisplayName() + " is currently LEVEL " + plugin.lm.checkLevel(argumentPlayer) + " (" + plugin.lm.getExp(argumentPlayer) + "/" +
+                            plugin.lm.getTargetLevelExp(argumentPlayer, plugin.lm.getLevel(argumentPlayer)) + ")");
+                }
+                else {
+                    player.sendMessage(ChatColor.translateAlternateColorCodes('&', playerNotFound));
+                }
             }
         }
 
