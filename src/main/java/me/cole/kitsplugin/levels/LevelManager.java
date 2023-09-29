@@ -84,21 +84,21 @@ public class LevelManager {
     public String getColouredLevel(Player player) {
         String colouredLevel = "";
         int level = checkLevel(player);
-        if (0 <= level && level < 4) {
+        if (0 <= level && level <= 4) {
             colouredLevel = "" + ChatColor.DARK_GRAY + checkLevel(player);
-        } else if (5 <= level && level < 9) {
+        } else if (5 <= level && level <= 9) {
             colouredLevel = "" + ChatColor.GRAY + checkLevel(player);
-        } else if (10 <= level && level < 14) {
+        } else if (10 <= level && level <= 14) {
             colouredLevel = "" + ChatColor.DARK_GREEN + checkLevel(player);
-        } else if (15 <= level && level < 19) {
+        } else if (15 <= level && level <= 19) {
             colouredLevel = "" + ChatColor.GREEN + checkLevel(player);
-        } else if (20 <= level && level < 24) {
+        } else if (20 <= level && level <= 24) {
             colouredLevel = "" + ChatColor.YELLOW + checkLevel(player);
-        } else if (25 <= level && level < 29) {
+        } else if (25 <= level && level <= 29) {
             colouredLevel = "" + ChatColor.GOLD + checkLevel(player);
-        } else if (30 <= level && level < 34) {
+        } else if (30 <= level && level <= 34) {
             colouredLevel = "" + ChatColor.RED + checkLevel(player);
-        } else if (35 <= level && level < 39) {
+        } else if (35 <= level && level <= 39) {
             colouredLevel = "" + ChatColor.RED + ChatColor.BOLD + checkLevel(player);
         } else {
             colouredLevel = "" + ChatColor.DARK_PURPLE + ChatColor.BOLD + checkLevel(player);
