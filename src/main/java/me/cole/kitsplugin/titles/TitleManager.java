@@ -14,30 +14,34 @@ public class TitleManager {
         this.database = database;
     }
 
-    private enum TitleTypes {
-        PEASANT, AMATEUR, RECRUIT, ELITE, DECIMATOR, GOD
+    public enum TitleTypes {
+        PEASANT("Peasant"), AMATEUR("Amateur"), RECRUIT("Recruit"), ELITE("Elite"), DECIMATOR("Decimator"), GOD("God");
+
+        private String title;
+        TitleTypes(String title) {
+        }
     }
 
-    public TitleTypes getTitle(Player player) {
-        TitleTypes title = null;
+    public String getTitle(Player player) {
+        String title = null;
         try {
             DatabaseStructure stats = database.getUserStatistics(player);
             int kills = stats.getKills();
 
             if ((0 <= kills && kills <= 49)) {
-                title = TitleTypes.PEASANT;
+                title = TitleTypes.PEASANT.title;
             } else if ((50 <= kills && kills <= 99)) {
-                title = TitleTypes.AMATEUR;
+                title = TitleTypes.AMATEUR.title;
             } else if ((100 <= kills && kills <= 199)) {
-                title = TitleTypes.RECRUIT;
+                title = TitleTypes.RECRUIT.title;
             } else if ((200 <= kills && kills <= 499)) {
-                title = TitleTypes.ELITE;
+                title = TitleTypes.ELITE.title;
             } else if ((500 <= kills && kills <= 999)) {
-                title = TitleTypes.DECIMATOR;
+                title = TitleTypes.DECIMATOR.title;
             } else if ((999 <= kills && kills <= 9999)) {
-                title = TitleTypes.GOD;
+                title = TitleTypes.GOD.title;
             } else {
-                title = TitleTypes.PEASANT;
+                title = TitleTypes.PEASANT.title;
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -46,20 +50,20 @@ public class TitleManager {
     }
 
     public String getColouredTitle(Player player) {
-        TitleTypes getTitle = getTitle(player);
+        String getTitle = getTitle(player);
         String colouredTitle = "";
         switch (getTitle) {
-            case PEASANT ->
+            case "Peasant" ->
                     colouredTitle = ChatColor.GRAY +"Peasant";
-            case AMATEUR ->
+            case "Amateur" ->
                     colouredTitle = ChatColor.GREEN +"Amateur";
-            case RECRUIT ->
+            case "Recruit" ->
                     colouredTitle = ChatColor.GOLD +"Recruit";
-            case ELITE ->
+            case "Elite" ->
                     colouredTitle = ChatColor.BLUE +"Elite";
-            case DECIMATOR ->
+            case "Decimator" ->
                     colouredTitle = ChatColor.DARK_PURPLE +"Decimator";
-            case GOD ->
+            case "God" ->
                     colouredTitle = ChatColor.RED +"God";
 
         }
