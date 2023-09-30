@@ -3,6 +3,8 @@ version: '${project.version}'
 main: me.cole.kitsplugin.Kits
 api-version: '1.20'
 commands:
+  title:
+    description: Testing
   level:
     description: Testing
   setlevel:

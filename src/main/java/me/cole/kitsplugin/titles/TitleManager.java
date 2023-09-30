@@ -14,57 +14,50 @@ public class TitleManager {
         this.database = database;
     }
 
-    public enum TitleTypes {
-        PEASANT("Peasant"), AMATEUR("Amateur"), RECRUIT("Recruit"), ELITE("Elite"), DECIMATOR("Decimator"), GOD("God");
-
-        private String title;
-        TitleTypes(String title) {
-        }
-    }
-
     public int getKills(String title){
         int kills = 0;
+
         if (title.equalsIgnoreCase("peasant")) {
-            return kills = 50;
+            kills = 50;
         } else if (title.equalsIgnoreCase("amateur")) {
-            return kills = 100;
+            kills = 100;
         } else if (title.equalsIgnoreCase("recruit")) {
-            return kills = 200;
+            kills = 200;
         } else if (title.equalsIgnoreCase("elite")) {
-            return kills = 500;
+            kills = 500;
         } else if (title.equalsIgnoreCase("decimator")) {
-            return kills = 1000;
+            kills = 1000;
         } else if (title.equalsIgnoreCase("god")) {
-            return kills = 9999;
+            kills = 9999;
         }
 
         return kills;
     }
 
     public String getTitle(Player player) {
-        String title = null;
+        String title = "Peasant";
+        int kills;
         try {
             DatabaseStructure stats = database.getUserStatistics(player);
-            int kills = stats.getKills();
-
-            if ((0 <= kills && kills <= 49)) {
-                title = TitleTypes.PEASANT.title;
-            } else if ((50 <= kills && kills <= 99)) {
-                title = TitleTypes.AMATEUR.title;
-            } else if ((100 <= kills && kills <= 199)) {
-                title = TitleTypes.RECRUIT.title;
-            } else if ((200 <= kills && kills <= 499)) {
-                title = TitleTypes.ELITE.title;
-            } else if ((500 <= kills && kills <= 999)) {
-                title = TitleTypes.DECIMATOR.title;
-            } else if ((999 <= kills && kills <= 9999)) {
-                title = TitleTypes.GOD.title;
-            } else {
-                title = TitleTypes.PEASANT.title;
-            }
+            kills = stats.getKills();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+
+        if ((0 <= kills && kills <= 49)) {
+            title = "Peasant";
+        } else if ((50 <= kills && kills <= 99)) {
+            title = "Amateur";
+        } else if ((100 <= kills && kills <= 199)) {
+            title = "Recruit";
+        } else if ((200 <= kills && kills <= 499)) {
+            title = "Elite";
+        } else if ((500 <= kills && kills <= 999)) {
+            title = "Decimator";
+        } else if ((999 <= kills && kills <= 9999)) {
+            title = "God";
+        }
+
         return title;
     }
 

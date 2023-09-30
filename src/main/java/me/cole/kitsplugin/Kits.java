@@ -8,6 +8,7 @@ import me.cole.kitsplugin.levels.commands.SetLevelCommand;
 import me.cole.kitsplugin.listeners.OnPlayerChat;
 import me.cole.kitsplugin.listeners.OnPlayerDeath;
 import me.cole.kitsplugin.titles.TitleManager;
+import me.cole.kitsplugin.titles.commands.TitleCommand;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.sql.SQLException;
@@ -37,6 +38,7 @@ public final class Kits extends JavaPlugin {
         tm = new TitleManager(database);
 
         // Register commands
+        Objects.requireNonNull(getCommand("title")).setExecutor(new TitleCommand(this, database));
         Objects.requireNonNull(getCommand("level")).setExecutor(new LevelCommand(this));
         Objects.requireNonNull(getCommand("setlevel")).setExecutor(new SetLevelCommand(this));
         Objects.requireNonNull(getCommand("setxp")).setExecutor(new SetExpCommand(this));

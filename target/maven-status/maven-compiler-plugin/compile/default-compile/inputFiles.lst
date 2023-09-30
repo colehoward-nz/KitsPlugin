@@ -1,8 +1,11 @@
+C:\Users\coleh\IdeaProjects\KitsPlugin\src\main\java\me\cole\kitsplugin\titles\TitleManager.java
 C:\Users\coleh\IdeaProjects\KitsPlugin\src\main\java\me\cole\kitsplugin\database\DatabaseStructure.java
-C:\Users\coleh\IdeaProjects\KitsPlugin\src\main\java\me\cole\kitsplugin\levels\SetExpCommand.java
-C:\Users\coleh\IdeaProjects\KitsPlugin\src\main\java\me\cole\kitsplugin\levels\LevelCommand.java
+C:\Users\coleh\IdeaProjects\KitsPlugin\src\main\java\me\cole\kitsplugin\levels\commands\LevelCommand.java
+C:\Users\coleh\IdeaProjects\KitsPlugin\src\main\java\me\cole\kitsplugin\listeners\OnPlayerDeath.java
 C:\Users\coleh\IdeaProjects\KitsPlugin\src\main\java\me\cole\kitsplugin\listeners\OnPlayerChat.java
 C:\Users\coleh\IdeaProjects\KitsPlugin\src\main\java\me\cole\kitsplugin\database\Database.java
+C:\Users\coleh\IdeaProjects\KitsPlugin\src\main\java\me\cole\kitsplugin\levels\commands\SetExpCommand.java
+C:\Users\coleh\IdeaProjects\KitsPlugin\src\main\java\me\cole\kitsplugin\levels\commands\SetLevelCommand.java
+C:\Users\coleh\IdeaProjects\KitsPlugin\src\main\java\me\cole\kitsplugin\titles\commands\TitleCommand.java
 C:\Users\coleh\IdeaProjects\KitsPlugin\src\main\java\me\cole\kitsplugin\Kits.java
 C:\Users\coleh\IdeaProjects\KitsPlugin\src\main\java\me\cole\kitsplugin\levels\LevelManager.java
-C:\Users\coleh\IdeaProjects\KitsPlugin\src\main\java\me\cole\kitsplugin\levels\SetLevelCommand.java
