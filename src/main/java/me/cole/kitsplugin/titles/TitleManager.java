@@ -22,6 +22,25 @@ public class TitleManager {
         }
     }
 
+    public int getKills(String title){
+        int kills = 0;
+        if (title.equalsIgnoreCase("peasant")) {
+            return kills = 50;
+        } else if (title.equalsIgnoreCase("amateur")) {
+            return kills = 100;
+        } else if (title.equalsIgnoreCase("recruit")) {
+            return kills = 200;
+        } else if (title.equalsIgnoreCase("elite")) {
+            return kills = 500;
+        } else if (title.equalsIgnoreCase("decimator")) {
+            return kills = 1000;
+        } else if (title.equalsIgnoreCase("god")) {
+            return kills = 9999;
+        }
+
+        return kills;
+    }
+
     public String getTitle(Player player) {
         String title = null;
         try {
