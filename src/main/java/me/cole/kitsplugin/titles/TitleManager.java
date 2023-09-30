@@ -15,7 +15,7 @@ public class TitleManager {
     }
 
     private enum TitleTypes {
-        PEASANT, AMATEUR, RECRUIT, ELITE, DECIMATOR
+        PEASANT, AMATEUR, RECRUIT, ELITE, DECIMATOR, GOD
     }
 
     public TitleTypes getTitle(Player player) {
@@ -23,18 +23,19 @@ public class TitleManager {
         try {
             DatabaseStructure stats = database.getUserStatistics(player);
             int kills = stats.getKills();
-            int level = stats.getLevel();
 
-            if ((0<= kills && kills <= 50) && (0 <= level && level <= 4)) {
+            if ((0 <= kills && kills <= 49)) {
                 title = TitleTypes.PEASANT;
-            } else if ((50<= kills && kills <= 100) && (0 <= level && level <= 9)) {
+            } else if ((50 <= kills && kills <= 99)) {
                 title = TitleTypes.AMATEUR;
-            } else if ((100<= kills && kills <= 200) && (0 <= level && level <= 14)) {
+            } else if ((100 <= kills && kills <= 199)) {
                 title = TitleTypes.RECRUIT;
-            } else if ((200<= kills && kills <= 500) && (0 <= level && level <= 19)) {
+            } else if ((200 <= kills && kills <= 499)) {
                 title = TitleTypes.ELITE;
-            } else if ((500<= kills && kills <= 1000) && (0 <= level && level <= 24)) {
+            } else if ((500 <= kills && kills <= 999)) {
                 title = TitleTypes.DECIMATOR;
+            } else if ((999 <= kills && kills <= 9999)) {
+                title = TitleTypes.GOD;
             } else {
                 title = TitleTypes.PEASANT;
             }
@@ -58,6 +59,9 @@ public class TitleManager {
                     colouredTitle = ChatColor.BLUE +"Elite";
             case DECIMATOR ->
                     colouredTitle = ChatColor.DARK_PURPLE +"Decimator";
+            case GOD ->
+                    colouredTitle = ChatColor.RED +"God";
+
         }
         return colouredTitle;
     }
