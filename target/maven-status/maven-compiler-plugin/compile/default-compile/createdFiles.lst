@@ -1,9 +1,12 @@
 me\cole\kitsplugin\Kits.class
 me\cole\kitsplugin\listeners\OnPlayerDeath.class
 me\cole\kitsplugin\database\Database.class
+me\cole\kitsplugin\titles\TitleManager.class
+me\cole\kitsplugin\levels\commands\SetExpCommand.class
+me\cole\kitsplugin\levels\LevelManager.class
+me\cole\kitsplugin\levels\commands\SetLevelCommand.class
+me\cole\kitsplugin\titles\TitleManager$TitleTypes.class
 me\cole\kitsplugin\listeners\OnPlayerChat.class
 me\cole\kitsplugin\database\DatabaseStructure.class
-me\cole\kitsplugin\levels\LevelCommand.class
-me\cole\kitsplugin\levels\LevelManager.class
-me\cole\kitsplugin\levels\SetLevelCommand.class
-me\cole\kitsplugin\levels\SetExpCommand.class
+me\cole\kitsplugin\levels\commands\LevelCommand.class
+me\cole\kitsplugin\titles\TitleManager$1.class

@@ -1,12 +1,13 @@
 package me.cole.kitsplugin;
 
 import me.cole.kitsplugin.database.Database;
-import me.cole.kitsplugin.levels.LevelCommand;
+import me.cole.kitsplugin.levels.commands.LevelCommand;
 import me.cole.kitsplugin.levels.LevelManager;
-import me.cole.kitsplugin.levels.SetExpCommand;
-import me.cole.kitsplugin.levels.SetLevelCommand;
+import me.cole.kitsplugin.levels.commands.SetExpCommand;
+import me.cole.kitsplugin.levels.commands.SetLevelCommand;
 import me.cole.kitsplugin.listeners.OnPlayerChat;
 import me.cole.kitsplugin.listeners.OnPlayerDeath;
+import me.cole.kitsplugin.titles.TitleManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.sql.SQLException;
@@ -16,6 +17,8 @@ public final class Kits extends JavaPlugin {
     private Database database;
     private Kits plugin;
     public LevelManager lm;
+    public TitleManager tm;
+
 
 
     @Override
@@ -31,6 +34,7 @@ public final class Kits extends JavaPlugin {
 
         plugin = this;
         lm = new LevelManager(database);
+        tm = new TitleManager(database);
 
         // Register commands
         Objects.requireNonNull(getCommand("level")).setExecutor(new LevelCommand(this));

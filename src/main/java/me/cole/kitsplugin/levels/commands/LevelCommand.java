@@ -1,4 +1,4 @@
-package me.cole.kitsplugin.levels;
+package me.cole.kitsplugin.levels.commands;
 
 import me.cole.kitsplugin.Kits;
 import org.bukkit.Bukkit;
