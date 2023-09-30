@@ -89,9 +89,17 @@ public class LevelManager {
                 int remainder = (int) Math.ceil(exp % getTargetLevelExp(player, getLevel(player)));
                 stats.setLevel(stats.getLevel() + 1);
                 stats.setExp(remainder);
+
+                if (stats.getLevel() % 5 == 0) {
+                    int bonusBal = (int) Math.floor(Math.random() *(300 - 100 + 100) + 300);
+                    stats.setBal(stats.getBal()+bonusBal);
+                    player.sendMessage(ChatColor.YELLOW + "You received a bonus balance reward \nof " + ChatColor.DARK_GREEN
+                            + "$" + ChatColor.GREEN + bonusBal + ChatColor.YELLOW + " for reaching Level " + stats.getLevel());
+                }
+
                 inventory = player.getInventory();
                 inventory.addItem(getRewardCrate());
-                player.sendMessage(ChatColor.AQUA + "You have leveled up!\n" + ChatColor.GREEN + "You are now Level " + stats.getLevel() + "!\n" +
+                player.sendMessage(ChatColor.GREEN + "You are now Level " + stats.getLevel() + "!\n" +
                         ChatColor.GREEN + "(" + stats.getExp() + "/" + getTargetLevelExp(player, getLevel(player) + 1) + ")");
 
                 try {
