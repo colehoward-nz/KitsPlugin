@@ -1,17 +1,12 @@
 package me.cole.kitsplugin.levels.commands;
 
 import me.cole.kitsplugin.Kits;
-import me.cole.kitsplugin.database.Database;
-import me.cole.kitsplugin.database.DatabaseStructure;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-
-import java.sql.SQLException;
-import java.util.Set;
 
 public class SetExpCommand implements CommandExecutor {
     private final Kits plugin;
@@ -24,7 +19,8 @@ public class SetExpCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String s, String[] args) {
-        if (sender instanceof Player player) {
+        if (sender instanceof Player) {
+            Player player = (Player) sender;
             if (player.hasPermission("kits.setexp") || player.isOp()) {
                 if (args.length == 0 || args.length == 1) {
                     player.sendMessage(ChatColor.RED + "Incorrect usage: /setexp <player> <number>");

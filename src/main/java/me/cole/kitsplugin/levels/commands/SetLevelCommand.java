@@ -8,8 +8,6 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import java.util.IllegalFormatConversionException;
-
 public class SetLevelCommand implements CommandExecutor {
     private final Kits plugin;
     private final String playerNotFound;
@@ -21,7 +19,8 @@ public class SetLevelCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String s, String[] args) {
-        if (sender instanceof Player player) {
+        if (sender instanceof Player) {
+            Player player = (Player) sender;
             if (player.hasPermission("kits.setlevel") || player.isOp()) {
                 if (args.length == 0 || args.length == 1) {
                     player.sendMessage(ChatColor.RED + "Incorrect usage: /setlevel <player> <number>");

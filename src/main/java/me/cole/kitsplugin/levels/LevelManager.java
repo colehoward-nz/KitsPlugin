@@ -74,46 +74,56 @@ public class LevelManager {
         }
     }
 
-    public int checkLevel(Player player) {
+    public void setBal(Player player, int bal) {
         DatabaseStructure stats;
         try {
             stats = database.getUserStatistics(player);
+            stats.setBal(bal);
+            database.updateUserStatistics(stats);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
 
-        double exp = stats.getExp();
+    public int getBal(Player player) {
+        DatabaseStructure stats;
+        try {
+            stats = database.getUserStatistics(player);
+            return stats.getBal();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public int checkLevel(Player player) {
+        int level = getLevel(player);
+        double exp = getExp(player);
         if (exp >= getTargetLevelExp(player, getLevel(player))) {
             Inventory inventory = player.getInventory();
             if (inventory.firstEmpty() != -1) {
                 int remainder = (int) Math.ceil(exp % getTargetLevelExp(player, getLevel(player)));
-                stats.setLevel(stats.getLevel() + 1);
-                stats.setExp(remainder);
+                setLevel(player, level + 1);
+                setExp(player, remainder);
 
-                if (stats.getLevel() % 5 == 0) {
+                if (level % 5 == 0) {
                     int bonusBal = (int) Math.floor(Math.random() *(300 - 100 + 100) + 300);
-                    stats.setBal(stats.getBal()+bonusBal);
+                    setBal(player, getBal(player)+bonusBal);
                     player.sendMessage(ChatColor.YELLOW + "You received a bonus balance reward \nof " + ChatColor.DARK_GREEN
-                            + "$" + ChatColor.GREEN + bonusBal + ChatColor.YELLOW + " for reaching Level " + stats.getLevel());
+                            + "$" + ChatColor.GREEN + bonusBal + ChatColor.YELLOW + " for reaching Level " + getLevel(player));
                 }
 
                 inventory = player.getInventory();
                 inventory.addItem(getRewardCrate());
-                player.sendMessage(ChatColor.GREEN + "You are now Level " + stats.getLevel() + "!\n" +
-                        ChatColor.GREEN + "(" + stats.getExp() + "/" + getTargetLevelExp(player, getLevel(player) + 1) + ")");
+                player.sendMessage(ChatColor.GREEN + "You are now Level " + getLevel(player) + "!\n" +
+                        ChatColor.GREEN + "(" + getExp(player) + "/" + getTargetLevelExp(player, getLevel(player) + 1) + ")");
 
-                try {
-                    database.updateUserStatistics(stats);
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
-                }
-
-            } else {
+            }
+            else {
                 player.sendMessage(ChatColor.GREEN + "\nYour level up has been halted as \nyour" +
                         " inventory is full.\n ");
             }
         }
-        return stats.getLevel();
+        return getLevel(player);
     }
 
     public ItemStack getRewardCrate() {

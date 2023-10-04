@@ -19,7 +19,8 @@ public class LevelCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String s, String[] args) {
-        if (sender instanceof Player player) {
+        if (sender instanceof Player) {
+            Player player = (Player) sender;
             if (args.length == 0 || args[0].equalsIgnoreCase(player.getDisplayName())) {
                 player.sendMessage(ChatColor.YELLOW + "You are currently LEVEL " + plugin.lm.checkLevel(player) + " (" + plugin.lm.getExp(player) + "/" +
                         plugin.lm.getTargetLevelExp(player, plugin.lm.getLevel(player)) + ")");
